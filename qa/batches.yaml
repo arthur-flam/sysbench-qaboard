@@ -1,0 +1,5 @@
+benchmark:
+  inputs:
+  - /home/arthurf/benchmark
+  - /algo/qa_db/benchmark
+  - /var/tmp/benchmark

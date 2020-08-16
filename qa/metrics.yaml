@@ -1,0 +1,63 @@
+# you must define metadata about all your objective figures of merits
+available_metrics:
+  reads/s:
+    label: reads
+    suffix: "/s"
+    smaller_is_better: false
+  writes/s:
+    label: writes
+    suffix: "/s"
+    smaller_is_better: false
+  fsyncs/s:
+    label: fsyncs
+    suffix: "/s"
+    smaller_is_better: false
+  read, MiB/s:
+    label: Read Throughput
+    suffix: MiB/s
+    smaller_is_better: false
+  written, MiB/s:
+    label: Write Throughput
+    suffix: MiB/s
+    smaller_is_better: false
+
+  min:
+    label: Latency (min)
+    suffix: ms
+  avg:
+    label: Latency (avg)
+    suffix: ms
+  max:
+    label: Latency (max)
+    suffix: ms
+  95th percentile:
+    label: Latency (95th)
+    suffix: ms
+
+
+# Below we define which metrics the GUI should show
+default_metric: reads/s
+
+# will be shown in the summary histogramms
+summary_metrics:
+  - reads/s
+  - writes/s
+  - fsyncs/s
+  - read, MiB/s
+  - written, MiB/s
+  - min
+  - avg
+  - max
+  - 95th percentile
+
+# will be shown in the results table and in the output cards
+main_metrics:
+  - reads/s
+  - writes/s
+  - fsyncs/s
+  - read, MiB/s
+  - written, MiB/s
+  - min
+  - avg
+  - max
+  - 95th percentile
