@@ -10,7 +10,9 @@ sysbench fileio --file-test-mode=rndrw run --histogram
 
 It will show a latency histogram and lots of relevant metrics qualifying throughput etc.
 
-> For scientific results, we should repeat experiments, worry about a working-set of files larger than the memory, flush OS caches, etc.
+> Don't draw conclusions from the results!
+>
+> For scientific measurements, we should repeat experiments, worry about and flush OS caches, etc.
 
 References:
 - [Sysbench man](https://manpages.debian.org/testing/sysbench/sysbench.1.en.html)
