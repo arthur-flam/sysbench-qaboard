@@ -14,10 +14,8 @@ project:
 
 # Default settings (can be overridden per run...)
 inputs:
-  glob: benchmark
-  # We assume your inputs are located at $database/$input. [read the docs for other options...]
+  glob:
   database:
-    # Often databases are mounted at different locations on linux and windows...
     linux: /
     windows: C://
 

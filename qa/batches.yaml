@@ -1,5 +1,19 @@
-benchmark:
+
+benchmark-fileio:
   inputs:
-  - /home/arthurf/benchmark
-  - /algo/qa_db/benchmark
-  - /var/tmp/benchmark
+    - /home/arthurf/benchmark
+    # - /algo/qa_db/benchmark
+    # - /var/tmp/benchmark
+  configs:
+  - testname: fileio
+    prepare: true
+    clean: false
+    file-test-mode: rndrw
+    histogram: true
+
+benchmark-cpu:
+  inputs:
+  - /proc/cpuinfo
+  configs:
+  - testname: cpu
+    histogram: true

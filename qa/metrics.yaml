@@ -12,27 +12,41 @@ available_metrics:
     label: fsyncs
     suffix: "/s"
     smaller_is_better: false
-  read, MiB/s:
+  read_mib/s:
     label: Read Throughput
     suffix: MiB/s
     smaller_is_better: false
-  written, MiB/s:
+  written_mib/s:
     label: Write Throughput
     suffix: MiB/s
     smaller_is_better: false
 
-  min:
+  latency_ms_min:
     label: Latency (min)
     suffix: ms
-  avg:
+  latency_ms_avg:
     label: Latency (avg)
     suffix: ms
-  max:
+  latency_ms_max:
     label: Latency (max)
     suffix: ms
-  95th percentile:
+  latency_ms_95th_percentile:
     label: Latency (95th)
     suffix: ms
+
+  total_time:
+    label: Total Time
+    suffix: s
+  execution_time_avg:
+    label: Execution Time Avg
+    short_label: Time Avg
+    suffix: s
+  execution_time_avg:
+    label: Execution Time StdDev
+    short_label: Time StdDev
+    suffix: s
+  
+    
 
 
 # Below we define which metrics the GUI should show
@@ -40,24 +54,26 @@ default_metric: reads/s
 
 # will be shown in the summary histogramms
 summary_metrics:
+  - execution_time_avg
   - reads/s
   - writes/s
   - fsyncs/s
-  - read, MiB/s
-  - written, MiB/s
-  - min
-  - avg
-  - max
-  - 95th percentile
+  - read_mib/s
+  - written_mib/s
+  - latency_ms_min
+  - latency_ms_avg
+  - latency_ms_max
+  - latency_ms_95th_percentile
 
 # will be shown in the results table and in the output cards
 main_metrics:
+  - execution_time_avg
   - reads/s
   - writes/s
   - fsyncs/s
-  - read, MiB/s
-  - written, MiB/s
-  - min
-  - avg
-  - max
-  - 95th percentile
+  - read_mib/s
+  - written_mib/s
+  - latency_ms_min
+  - latency_ms_avg
+  - latency_ms_max
+  - latency_ms_95th_percentile
