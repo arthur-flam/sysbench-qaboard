@@ -1,7 +1,7 @@
 # Disk benchmarking
 
 ## What does it do?
-This project is a QA-Board wrapper around [sysbench](https://github.com/akopytov/sysbench):
+This project is a QA-Board wrapper around [sysbench](https://github.com/akopytov/sysbench)'s **fileio** benchmark suit:
 
 ```bash
 sysbench fileio prepare
@@ -21,7 +21,11 @@ References:
 
 ## Requirements
 ```bash
+# with debian
 sudo apt install sysbench
+
+# with other systems
+# https://github.com/akopytov/sysbench
 ```
 
 ## How to run
@@ -43,4 +47,28 @@ When you are done, cleanup temporary files:
 rm -rf /algo/qa_db/benchmark/*
 ```
 
+## TODO
+- Wrap other `sysbench` test suits:
 
+```yaml
+# qa/batches.yaml
+#=> run with "qa batch my-benchark"
+
+my-benchark:
+  inputs:
+  - /proc/cpuinfo
+  # https://github.com/akopytov/sysbench#general-syntax
+  configs:
+    # the test will prepare/run/clean
+  - testname: cpu
+    # options will be forwared: sysbench [testname] run --param-name value
+    threads: 1
+    warmup-time: 0
+```
+
+- Add relevant metrics/graphs for each test suit
+  * `oltp_*.lua`
+  * `cpu`
+  * `memory`
+  * `threads`
+  * `mutex`
