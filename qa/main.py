@@ -10,11 +10,11 @@ from pathlib import Path
 import click
 
 
-def get_histogram_data(logs, cutoff=None):
+def get_histogram_data(lines, cutoff=None):
   # https://plotly.com/javascript/bar-charts/
   x = []
   y = []
-  for line in logs.splitlines():
+  for line in lines:
     if '|' not in line:
       continue
     value_str, bar, count = line.split()
@@ -55,19 +55,32 @@ def run(context):
   if context.dryrun:
     return {"is_failed": False}
 
-  process = subprocess.run(
+  lines = []
+  # https://stackoverflow.com/questions/803265/getting-realtime-output-using-subprocess
+  process = subprocess.Popen(
     command,
     shell=True,
     cwd=context.input_path,
     encoding='utf-8',
-    capture_output=True,
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT,
+    bufsize=1,
+    errors='replace',
   )
+  while True:
+      line = process.stdout.readline()
+      if line == '' and process.poll() is not None:
+          break
+      if line:
+        # remove noise...
+        if "test_file" in line or "|" in line:
+          continue
+        print(line.strip(), flush=True)
+        lines.append(line)
+  returncode = process.poll()
 
   metrics = {}
-  for line in process.stdout.splitlines():
-    # remove noise...
-    if "test_file" in line or "|" in line:
-      continue
+  for line in lines:
 
     # get the metrics
     try:
@@ -78,10 +91,9 @@ def run(context):
       metrics[metric] = value
     except:
       pass
-    print(line)
   
   
-  histogram_data = get_histogram_data(process.stdout) #, 5 * metrics["avg"])
+  histogram_data = get_histogram_data(lines) #, 5 * metrics["avg"])
   with (context.output_dir / 'latency.plotly.json').open('w') as f:
     json.dump(histogram_data, f)
 
