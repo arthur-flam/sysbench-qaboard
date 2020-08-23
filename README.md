@@ -1,13 +1,24 @@
-# sysbench & QA-Board
-This project is a QA-Board wrapper around [sysbench](https://github.com/akopytov/sysbench)'s **fileio** benchmark suit:
+# Sysbench & QA-Board
+This project is a [QA-Board](https://samsung.github.io/qaboard) wrapper around [`sysbench`](https://github.com/akopytov/sysbench)'s benchmarks:
 
 ## Requirements
+- Install `sysbench`:
 ```bash
-# with debian
 sudo apt install sysbench
+# with non-debian systems: https://github.com/akopytov/sysbench
+```
 
-# with other systems
-# https://github.com/akopytov/sysbench
+- Use `python3.7` and install `qaboard`
+
+```python
+pip install --upgrade qaboard
+```
+
+- Get the code:
+
+```bash
+git clone git@github.com:arthur-flam/sysbench-qaboard.git
+cd sysbench-qaboard
 ```
 
 ## Usage
@@ -28,7 +39,7 @@ benchark-fileio:
     histogram: true
 ```
 
-Then start with
+Then start with:
 
 ```bash
 qa batch benchark-fileio
