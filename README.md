@@ -42,18 +42,23 @@ benchark-cpu:
   - /proc/cpuinfo
   configs:
   - testname: cpu
+    histogram: true
+    # threads: 4
+    # cpu-max-prime: 20000
+    # time: 60
 ```
 
 ## References:
 - [Sysbench man](https://manpages.debian.org/testing/sysbench/sysbench.1.en.html)
 - [Sysbench usage](https://wiki.gentoo.org/wiki/Sysbench)
+- [Evaluating cloud server performance](https://www.vpsbenchmarks.com/posts/evaluating_cloud_server_performance_with_sysbench)
 - [It can get tricky fast](https://www.alibabacloud.com/blog/testing-io-performance-with-sysbench_594709)
 
 ## TODO
-- Add relevant metrics/graphs for each test suit
+- Check/add relevant metrics/graphs for each test suit
   * [x] `fileio`
+  * [x] `cpu`
+  * [x] `memory`
   * [ ] `oltp_*.lua`
-  * [ ] `cpu`
-  * [ ] `memory`
   * [ ] `threads`
   * [ ] `mutex`

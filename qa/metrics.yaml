@@ -38,15 +38,23 @@ available_metrics:
     label: Total Time
     suffix: s
   execution_time_avg:
-    label: Execution Time Avg
+    label: Thread Execution Time Avg
     short_label: Time Avg
     suffix: s
-  execution_time_avg:
-    label: Execution Time StdDev
+  execution_time_stddev:
+    label: Thread Execution Time StdDev
     short_label: Time StdDev
     suffix: s
-  
-    
+
+  events_per_second:
+    label: Events per second
+    label: Events/s
+    suffix: "/s"
+    smaller_is_better: false
+  total_number_of_events:
+    label: Total Number of Events
+    short_label: "#Events"
+    smaller_is_better: false
 
 
 # Below we define which metrics the GUI should show
@@ -55,6 +63,8 @@ default_metric: reads/s
 # will be shown in the summary histogramms
 summary_metrics:
   - execution_time_avg
+  - events_per_second
+  - total_number_of_events
   - reads/s
   - writes/s
   - fsyncs/s
@@ -68,6 +78,8 @@ summary_metrics:
 # will be shown in the results table and in the output cards
 main_metrics:
   - execution_time_avg
+  - events_per_second
+  - total_number_of_events
   - reads/s
   - writes/s
   - fsyncs/s

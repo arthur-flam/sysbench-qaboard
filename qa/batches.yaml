@@ -17,3 +17,21 @@ benchmark-cpu:
   configs:
   - testname: cpu
     histogram: true
+    # threads: 4
+    # cpu-max-prime: 20000
+    # time: 60
+
+
+benchmark-memory:
+  inputs:
+  - /proc/meminfo
+  configs:
+  - testname: memory
+    histogram: true
+    memory-oper: write
+    memory-block-size: 1K
+    memory-scope: global
+    memory-total-size: 100G
+    threads: 4
+    time: 30
+
