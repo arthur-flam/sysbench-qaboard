@@ -1,16 +1,9 @@
 project:
-  name: arthurf/disk_benchmark
-  url: git@gitlab-srv:arthurf/disk_benchmark
+  name: arthur-flam/sysbench-qaboard
+  url: git@github.com:arthur-flam/sysbench-qaboard.git
   type: git
-  # remote_type: gitlab | github | gitea | ...
-  # By default the project is shown in the web application with the avatar and description from the remote
-  # avatar_url: https:// ....
-  # description
-  # Where the script implementing `run` and `postprocess` functions is located (relative to the project's root)
   entrypoint: qa/main.py
-  # The latest commit on this branch is used for as default reference when comparing results
   reference_branch: master
-
 
 # Default settings (can be overridden per run...)
 inputs:
@@ -26,27 +19,15 @@ inputs:
 
 
 outputs:
-  # Each metric should have a label, a quality treshold, a scale, unit...
-  # It is all defined in this file
   metrics: qa/metrics.yaml
-
-  # To learn more about how to describe how results should be visualized:
   # http://qa-docs/docs/visualizations
   visualizations:
   - name: Latency Histogram
     path: latency.plotly.json
-
-  # You pass CSS style attributes to your viewers' container
-  # here we instance we change the visualizations' width 
-  # style:
-  #   width: 840px
-
 
 runners:
   local:
     concurrency: 1
 
 
-storage:
-  linux: /stage/algo_data/ci
-  windows: '//netapp/algo_data/ci'
+storage: /var/qaboard
